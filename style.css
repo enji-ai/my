@@ -18,25 +18,40 @@ body {
     z-index: 9999;
 }
 
-/* Animasi Spinner */
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255, 255, 255, 0.3);
-    border-top: 5px solid #ffffff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+/* Neon Ring Loader */
+.neon-loader {
+    position: relative;
+    width: 60px;
+    height: 60px;
 }
 
-@keyframes spin {
+.neon-loader::before,
+.neon-loader::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    animation: neon-spin 1.5s linear infinite;
+}
+
+.neon-loader::before {
+    border-top-color: cyan;
+    border-bottom-color: cyan;
+}
+
+.neon-loader::after {
+    border-left-color: magenta;
+    border-right-color: magenta;
+    animation-delay: 0.75s;
+}
+
+@keyframes neon-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* Sembunyikan konten sebelum halaman selesai dimuat */
-.hidden {
-    display: none;
-}
 
 
 header {
