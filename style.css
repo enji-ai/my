@@ -1,7 +1,32 @@
+/* Teks utama warna neon */
 body {
-    background-color: #1a1a2e;
-    overflow: hidden;
+    color: #00ffff; /* Biru Neon */
 }
+
+/* Warna dan efek glow untuk judul */
+h1, h2 {
+    color: #ff00ff; /* Pink Magenta */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+}
+
+/* Warna teks di hero section */
+#hero h2 {
+    color: #fdfd96; /* Kuning Neon */
+    text-shadow: 0 0 10px #fdfd96, 0 0 20px #fdfd96;
+}
+
+/* Warna teks di bagian kontak */
+#contact p, #contact a {
+    color: #a100f2; /* Ungu Elektrik */
+    text-shadow: 0 0 8px #a100f2;
+}
+
+/* Warna teks saat di-hover */
+a:hover {
+    color: #00ffff; /* Biru Neon */
+    text-shadow: 0 0 15px #00ffff;
+}
+
 
 canvas {
     position: fixed;
