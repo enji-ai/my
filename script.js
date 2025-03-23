@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+    let loader = document.getElementById("loader");
+
     setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-    }, 1000); // Bisa disesuaikan durasinya
+        loader.classList.add("fade-out");
+
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 800);
+    }, 1500);
 });
