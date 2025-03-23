@@ -6,6 +6,16 @@ body {
     color: #e0e0e0;
 }
 
+.fade-out {
+    animation: fadeOut 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; filter: blur(0px); }
+    100% { opacity: 0; filter: blur(10px); }
+}
+
+
 /* Loader Overlay */
 #loader {
     position: fixed;
