@@ -1,86 +1,62 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Enji</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
+document.addEventListener("DOMContentLoaded", function () {
+    // 🔹 Efek Loading Screen
+    const loadingScreen = document.querySelector(".loading-screen");
 
- <!-- Music Player -->
-<div class="music-player">
-    <audio id="background-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
-        Browser Anda tidak mendukung elemen audio.
-    </audio>
-    <button id="music-toggle">
-        <i class="fas fa-play"></i>
-    </button>
-</div>
+    window.addEventListener("load", function () {
+        setTimeout(() => {
+            loadingScreen.style.opacity = "0";
+            setTimeout(() => {
+                loadingScreen.style.display = "none";
+            }, 500);
+        }, 1000);
+    });
 
-    
-    <!-- Efek Loading -->
-    <div class="loading-screen">
-        <div class="loader"></div>
-    </div>
+    // 🔹 Mode Gelap/Terang
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+    const body = document.body;
+    const icon = darkModeToggle.querySelector("i");
 
-    <!-- Background Video -->
-    <video autoplay muted loop id="bg-video">
-        <source src="background.mp4" type="video/mp4">
-        Browser Anda tidak mendukung video tag.
-    </video>
+    if (localStorage.getItem("dark-mode") === "enabled") {
+        body.classList.add("dark-mode");
+        icon.classList.replace("fa-sun", "fa-moon");
+    }
 
-    <!-- Navbar -->
-    <nav>
-        <h1>ENJI</h1>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="dark-mode-toggle">
-            <i id="darkModeIcon" class="fas fa-moon"></i>
-        </div>
-    </nav>
+    darkModeToggle.addEventListener("click", function () {
+        body.classList.toggle("dark-mode");
 
-    <!-- Home Section -->
-    <section id="home">
-        <h2>Selamat Datang di Portofolio Saya</h2>
-        <p>ambativasi:<br>muwani saja bisa berubah jadi bayi,<br>
-        apalagi dirimu, pasti bisa berubah jadi lebih baik
-       <br>--atmin</p>
-    </section>
+        if (body.classList.contains("dark-mode")) {
+            icon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("dark-mode", "enabled");
+        } else {
+            icon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("dark-mode", "disabled");
+        }
+    });
 
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hello, I am enang or usually called enji. I am a student and also a santri at the Jabal Toriq Islamic boarding school. My favorite language is javascript programming and anime. Hehe, I am not a wibu. I am 18 years old. My date of birth is 03-22-2007.</p>
-    </section>
+    // 🔹 Pemutar Musik (Fix untuk GitHub Pages)
+    const music = document.getElementById("background-music");
+    const musicToggle = document.getElementById("music-toggle");
+    const musicIcon = musicToggle.querySelector("i");
 
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <h2>My galery</h2>
-        <div class="gallery">
-            <img src="design1.jpg" alt="my waifu">
-            <img src="design2.jpg" alt="me">
-            <img src="design3.jpg" alt="wangsaf">
-        </div>
-    </section>
+    // Pastikan audio dalam keadaan mute saat awal
+    music.muted = true;
 
-    <!-- Contact Me Section -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Jika ingin bekerja sama, hubungi saya melalui:</p>
-        <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> Email: enjisecond@gmail.com</p>
-            <p><i class="fab fa-instagram"></i> Instagram: @callmeenzyy1</p>
-            <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/6283199503146" target="_blank">+62 831-9950-3146</a></p>
-        </div>
-    </section>
+    function enableAudio() {
+        music.muted = false;
+        document.removeEventListener("click", enableAudio);
+        document.removeEventListener("touchstart", enableAudio);
+    }
 
-</body>
-</html>
+    document.addEventListener("click", enableAudio);
+    document.addEventListener("touchstart", enableAudio);
+
+    musicToggle.addEventListener("click", function () {
+        if (music.paused) {
+            music.play().catch(error => console.log("Autoplay tidak diizinkan:", error));
+            musicIcon.classList.replace("fa-play", "fa-pause");
+        } else {
+            music.pause();
+            musicIcon.classList.replace("fa-pause", "fa-play");
+        }
+    });
+});
