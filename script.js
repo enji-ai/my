@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
                 loadingScreen.style.display = "none";
             }, 500);
-        }, 1000); // Waktu loading 1 detik
+        }, 1000);
     });
 
     // 🔹 Mode Gelap/Terang
@@ -33,10 +33,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Pemutar Musik
+    // 🔹 Pemutar Musik (Fix Audio Tidak Bisa Play)
     const music = document.getElementById("background-music");
     const musicToggle = document.getElementById("music-toggle");
     const musicIcon = musicToggle.querySelector("i");
+
+    function playAudio() {
+        music.play().catch(error => {
+            console.log("Autoplay tidak diizinkan, pengguna harus menekan tombol play.");
+        });
+        document.removeEventListener("click", playAudio);
+    }
+
+    // Menjalankan audio hanya setelah interaksi pengguna
+    document.addEventListener("click", playAudio);
 
     musicToggle.addEventListener("click", function () {
         if (music.paused) {
