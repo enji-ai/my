@@ -4,6 +4,29 @@
     src: url('fonts/AnimeAce.ttf') format('truetype');
 }
 
+/* Music Player */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#music-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#music-toggle:hover {
+    color: cyan;
+}
+
 /* Reset */
 * {
     margin: 0;
