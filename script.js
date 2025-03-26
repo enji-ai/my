@@ -1,20 +1,49 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Efek Loading
-    setTimeout(() => {
-        document.querySelector(".loading-screen").style.display = "none";
-    }, 2000);
-
-    // Dark Mode Toggle
-    const darkModeToggle = document.querySelector(".dark-mode-toggle");
-    const darkModeIcon = document.getElementById("darkModeIcon");
+    // 🔹 Mode Gelap/Terang
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
     const body = document.body;
+    const icon = darkModeToggle.querySelector("i");
 
-    darkModeToggle.addEventListener("click", () => {
+    // Cek apakah pengguna sebelumnya mengaktifkan dark mode
+    if (localStorage.getItem("dark-mode") === "enabled") {
+        body.classList.add("dark-mode");
+        icon.classList.replace("fa-sun", "fa-moon");
+    }
+
+    // Toggle mode gelap/terang saat tombol ditekan
+    darkModeToggle.addEventListener("click", function () {
         body.classList.toggle("dark-mode");
+
         if (body.classList.contains("dark-mode")) {
-            darkModeIcon.classList.replace("fa-moon", "fa-sun");
+            icon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("dark-mode", "enabled");
         } else {
-            darkModeIcon.classList.replace("fa-sun", "fa-moon");
+            icon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("dark-mode", "disabled");
         }
     });
+
+    // 🔹 Pemutar Musik
+    const music = document.getElementById("background-music");
+    const musicToggle = document.getElementById("music-toggle");
+    const musicIcon = musicToggle.querySelector("i");
+
+    musicToggle.addEventListener("click", function () {
+        if (music.paused) {
+            music.play();
+            musicIcon.classList.replace("fa-play", "fa-pause");
+        } else {
+            music.pause();
+            musicIcon.classList.replace("fa-pause", "fa-play");
+        }
+    });
+
+    // 🔹 Efek Loading Screen
+    const loadingScreen = document.querySelector(".loading-screen");
+    setTimeout(() => {
+        loadingScreen.style.opacity = "0";
+        setTimeout(() => {
+            loadingScreen.style.display = "none";
+        }, 500);
+    }, 1500); // Waktu loading 1,5 detik
 });
