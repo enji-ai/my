@@ -33,24 +33,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Pemutar Musik (Fix Audio Tidak Bisa Play)
+    // 🔹 Pemutar Musik (Fix untuk GitHub Pages)
     const music = document.getElementById("background-music");
     const musicToggle = document.getElementById("music-toggle");
     const musicIcon = musicToggle.querySelector("i");
 
-    function playAudio() {
-        music.play().catch(error => {
-            console.log("Autoplay tidak diizinkan, pengguna harus menekan tombol play.");
-        });
-        document.removeEventListener("click", playAudio);
+    // Pastikan audio dalam keadaan mute saat awal
+    music.muted = true;
+
+    function enableAudio() {
+        music.muted = false;
+        document.removeEventListener("click", enableAudio);
+        document.removeEventListener("touchstart", enableAudio);
     }
 
-    // Menjalankan audio hanya setelah interaksi pengguna
-    document.addEventListener("click", playAudio);
+    document.addEventListener("click", enableAudio);
+    document.addEventListener("touchstart", enableAudio);
 
     musicToggle.addEventListener("click", function () {
         if (music.paused) {
-            music.play();
+            music.play().catch(error => console.log("Autoplay tidak diizinkan:", error));
             musicIcon.classList.replace("fa-play", "fa-pause");
         } else {
             music.pause();
