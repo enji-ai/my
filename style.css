@@ -13,6 +13,31 @@
     transition: all 0.3s ease-in-out;
 }
 
+.terminal {
+  background: black;
+  color: lime;
+  font-family: "Courier New", monospace;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px lime;
+  width: 80%;
+  max-width: 600px;
+  margin: 50px auto;
+  height: auto;
+  min-height: 150px;
+  border: 2px solid lime;
+  overflow: hidden;
+  position: relative;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
 /* Background Video */
 #bg-video {
     position: fixed;
