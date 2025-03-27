@@ -33,30 +33,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Pemutar Musik (Fix untuk GitHub Pages)
-    const music = document.getElementById("background-music");
-    const musicToggle = document.getElementById("music-toggle");
-    const musicIcon = musicToggle.querySelector("i");
+    document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("popup");
+    const openBtn = document.querySelector(".open-popup-btn");
+    const closeBtn = document.querySelector(".close-btn");
 
-    // Pastikan audio dalam keadaan mute saat awal
-    music.muted = true;
+    openBtn.addEventListener("click", () => {
+        popup.classList.add("active");
+    });
 
-    function enableAudio() {
-        music.muted = false;
-        document.removeEventListener("click", enableAudio);
-        document.removeEventListener("touchstart", enableAudio);
-    }
+    closeBtn.addEventListener("click", () => {
+        popup.classList.remove("active");
+    });
 
-    document.addEventListener("click", enableAudio);
-    document.addEventListener("touchstart", enableAudio);
-
-    musicToggle.addEventListener("click", function () {
-        if (music.paused) {
-            music.play().catch(error => console.log("Autoplay tidak diizinkan:", error));
-            musicIcon.classList.replace("fa-play", "fa-pause");
-        } else {
-            music.pause();
-            musicIcon.classList.replace("fa-pause", "fa-play");
+    // Tutup popup kalau klik di luar box
+    popup.addEventListener("click", (e) => {
+        if (e.target === popup) {
+            popup.classList.remove("active");
         }
     });
 });
