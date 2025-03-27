@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const terminalText = document.querySelector(".terminal-text");
 
     // Teks yang diketik
-    const text = "Selamat datang di website saya, Saya Enji, saya adalah NPC.";
+    const text = "welcome to my website";
     let i = 0;
 
     function typeText(callback) {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             i++;
             setTimeout(() => typeText(callback), 50); // Kecepatan mengetik
         } else {
-            setTimeout(callback, 500); // Delay sebelum loading mulai
+            setTimeout(callback, 100); // Delay sebelum loading mulai
         }
     }
 
