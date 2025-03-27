@@ -14,8 +14,7 @@ toggleBtn.addEventListener("click", () => {
     } else {
         music.pause();
         toggleBtn.textContent = "🎵 Play Music";
-    }
-}   
+    });
     // Teks yang diketik
     const text = "welcome to my website";
     let i = 0;
