@@ -9,40 +9,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = "welcome to my website";
     let i = 0;
 
-    function typeText(callback) {
+    function typeText() {
         if (i < text.length) {
             typingText.innerHTML += text.charAt(i);
             i++;
-            setTimeout(() => typeText(callback), 50); // Kecepatan mengetik
-        } else {
-            setTimeout(callback, 100); // Delay sebelum loading mulai
+            setTimeout(typeText, 50); // Kecepatan mengetik
         }
     }
+
+    typeText(); // Mulai animasi mengetik
 
     // Simulasi loading progress
+    let progress = 0;
     function updateProgress() {
-        let progress = 0;
-        function increaseProgress() {
-            if (progress < 100) {
-                progress += Math.floor(Math.random() * 10) + 5; // Naik acak
-                if (progress > 100) progress = 100;
+        if (progress < 100) {
+            progress += Math.floor(Math.random() * 10) + 5; // Naik acak
+            if (progress > 100) progress = 100;
 
-                progressFill.style.width = progress + "%";
-                progressPercent.textContent = progress + "%";
+            progressFill.style.width = progress + "%";
+            progressPercent.textContent = progress + "%";
 
-                // Efek glitch tambahan
-                terminalText.textContent = Math.random() > 0.5 ? "_" : "█";
+            // Efek glitch tambahan
+            terminalText.textContent = Math.random() > 0.5 ? "_" : "█";
 
-                setTimeout(increaseProgress, 300); // Update setiap 300ms
-            } else {
-                setTimeout(() => {
-                    loadingScreen.classList.add("hidden"); // Hilangkan loading
-                }, 500);
-            }
+            setTimeout(updateProgress, 300); // Update setiap 300ms
+        } else {
+            setTimeout(() => {
+                loadingScreen.classList.add("hidden"); // Hilangkan loading
+            }, 500);
         }
-        increaseProgress(); // Mulai progress bar
     }
 
-    // Jalankan efek ketik dulu, baru loading bar
-    typeText(updateProgress);
+    updateProgress(); // Mulai progress bar
+ // Dark Mode Toggle
+    const darkModeToggle = document.querySelector(".dark-mode-toggle");
+    const darkModeIcon = document.getElementById("darkModeIcon");
+    const body = document.body;
+
+    darkModeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        if (body.classList.contains("dark-mode")) {
+            darkModeIcon.classList.replace("fa-moon", "fa-sun");
+        } else {
+            darkModeIcon.classList.replace("fa-sun", "fa-moon");
+        }
+    });
 });
