@@ -4,7 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressFill = document.querySelector(".progress-fill");
     const progressPercent = document.querySelector(".progress-percent");
     const terminalText = document.querySelector(".terminal-text");
+let music = document.getElementById("bg-music");
+let toggleBtn = document.getElementById("music-toggle");
 
+toggleBtn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play();
+        toggleBtn.textContent = "🔇 Stop Music";
+    } else {
+        music.pause();
+        toggleBtn.textContent = "🎵 Play Music";
+    }
+    
     // Teks yang diketik
     const text = "welcome to my website";
     let i = 0;
