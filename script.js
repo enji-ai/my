@@ -45,4 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Jalankan efek ketik dulu, baru loading bar
     typeText(updateProgress);
+let music = document.getElementById("bg-music");
+let toggleBtn = document.getElementById("music-toggle");
+
+toggleBtn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play();
+        toggleBtn.textContent = "🔇 Stop Music";
+    } else {
+        music.pause();
+        toggleBtn.textContent = "🎵 Play Music";
+    }
 });
