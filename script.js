@@ -68,15 +68,13 @@ let text = `> Hello,
     let terminalText = document.getElementById("terminal-text");
     let cursor = document.querySelector(".cursor");
 
-    function typeEffect() {
+    let typingInterval = setInterval(() => {
         if (index < text.length) {
             terminalText.innerHTML += text.charAt(index);
             index++;
-            setTimeout(typeEffect, speed);
         } else {
-            cursor.style.display = "none"; // Hilangkan cursor setelah selesai mengetik
+            clearInterval(typingInterval); // Hentikan setelah selesai
+            cursor.style.display = "none"; // Hilangkan cursor
         }
-    }
-
-    typeEffect();
+    }, speed);
 });
