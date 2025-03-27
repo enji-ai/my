@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const terminalText = document.querySelector(".terminal-text");
 
     // Teks yang diketik
-    const text = "Selamat datang di website saya...\nSaya Enji, saya adalah NPC.";
+    const text = "Selamat datang di website saya Saya Enji, saya adalah NPC.";
     let i = 0;
 
     function typeText() {
